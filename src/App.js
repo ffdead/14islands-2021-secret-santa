@@ -413,6 +413,19 @@ function CameraParallax({ started, controls, parallax = 1 }) {
   return null;
 }
 
+function Dpr() {
+  const { setDpr } = useThree()
+  const { dpr } = useControls({
+    dpr: { value: 1.2, min: 0.5, max: 2 }
+  });
+
+  useEffect(() => {
+    setDpr(dpr)
+  }, [dpr])
+
+  return null
+}
+
 export default function App() {
   const controls = useRef();
   const shakeController = useRef();
@@ -447,10 +460,11 @@ export default function App() {
     <>
       <Canvas
         shadows
-        dpr={[1, 1.2]}
+        dpr={1}
         camera={{ position: [-5, 3, 6], fov: 50, near: 1, far: 20 }}
         gl={{ antialias: false, alpha: false }}
       >
+        <Dpr/>
         <Background />
         <Suspense fallback={null}>
           <PlaySound
