@@ -70,7 +70,7 @@ function Analyzer({ started, onStartRequest, sound, shakeController }) {
     if (shake) {
       shakeController.current.setIntensity(pulse * 0.2);
     }
-    eq.current.style.transform = `scaleY(${pulse * avg})`;
+    eq.current.style.transform = `scaleY(${Math.min(1, pulse * avg)})`;
 
     if (analyser.current && started) {
       mesh.current.material.color.setRGB(avg * 1, 0, 0);
@@ -225,7 +225,7 @@ function PlaySound({
 
   useEffect(() => {
     // not a real seek - just jumping forward a bit
-    if (!sound.current) return;
+    if (!sound.current || !started) return;
     // console.log("seek", seek, sound.current);
     sound.current.pause();
     sound.current.offset = seek;
