@@ -111,13 +111,13 @@ function Analyzer({ started, onStartRequest, sound, shakeController }) {
       mesh3.current.position.x = lerp(
         mesh3.current.position.x,
         (data2[7] / 255) * -2 - 1,
-        0.02,
+        0.045,
         delta
       );
       mesh3.current.position.z = lerp(
         mesh3.current.position.z,
         (data2[11] / 255) * 2 + 0.5,
-        0.02,
+        0.03,
         delta
       );
 
@@ -134,8 +134,8 @@ function Analyzer({ started, onStartRequest, sound, shakeController }) {
     "position-y": started ? 2.5 : 0.5,
     "position-z": started ? -1 : -0.5,
     scale: started ? 2 : 1,
-    config: { tension: 10, friction: 10 },
-    delay: 1000
+    config: { tension: 5, friction: 10 },
+    delay: 3000
   });
 
   const colorSpring = useSpring({
